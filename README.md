@@ -1,2 +1,2 @@
 # JET
-Jira Expedited Tasks project
+Jira Easy Tasks (JET) Project 
