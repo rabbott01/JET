@@ -1,7 +1,7 @@
 ![](JET_Logo.png)
 
 # JET (Jira Easy Tasks) Service
-JET (Jira Easy Tasks) is a simple web utility that streamlines the process of creating Jira tickets for simple and repetitive engineering tasks. It provides an intuitive web form where you can enter your email, summary, select a ticket type, and create Jira tickets with ease. JET eliminates the need to manually fill in the ticket details every time, making the task creation process efficient and hassle-free.
+JET (Jira Easy Tasks) is a simple web utility that streamlines the process of creating Jira tickets for simple and repetitive engineering tasks. JET eliminates the need to manually fill in all the neccessary Jira fields every time you create a ticket, making the task creation process efficient and hassle-free.
 
 ## Features
 
