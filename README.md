@@ -6,12 +6,9 @@ JET (Jira Easy Tasks) is a simple web utility that streamlines the process of cr
 ## Features
 
 ### Easy Ticket Creation
-JET offers a simple web form where HCC engineers can quickly enter the necessary details for creating a common Jira ticket, including fields for:
-- Email address
-- Summary
-- Issue type selection
+JET offers a simple web form where HCC engineers can quickly enter the necessary details for creating a common Jira ticket. It only requires your Red Hat email address, a quick one-line summary of the task and the selection of one of the four available common task types you're creating.
 
-### Ticket Type Selection
+### Task Type Selection
 JET has a quick selection for common Jira types. This ensures that the created tickets are labled and named correctly, including:
  - Merge requests
  - Maintenance
@@ -24,7 +21,7 @@ JET integrates with issues.redhat.com, utilizing the Jira REST API to create and
  - Summary (Summary)
  - Ticket Type (Summary and Label)
  
- Default values
+ Default values for all tasks:
   - Project Key = RHCLOUD
   - Issue Type = Task
   - Priiority = Normal
