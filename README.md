@@ -34,6 +34,6 @@ sequenceDiagram
     JET->>JET: Store const values
     JET-->>Jira: Pass details
     Jira->>Jira: Issue created
-    Jira-->>JET: Respons response
+    Jira-->>JET: Response details
     JET->>User: Issue ID and Link
 ```
