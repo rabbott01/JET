@@ -1,162 +1,184 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Create a JET</title>
-        <style>
-            .form-container {
-                max-width: 30rem;
-                margin: 2rem auto;
-                padding: 2rem;
-                background-color: #fff;
-                border: 1px solid #d2d2d2;
-                border-radius: 4px;
-            }
+<head>
+  <title>Jira easy task creator</title>
+  <style>
 
-            .logo {
-                width: 200px;
-                height: auto;
-                margin-bottom: 2rem;
-            }
+    body {
+      font-family: "Red Hat Display", sans-serif;
+      line-height: 1.5;
+      background-color: #dedede;
+      padding: 0 2rem;
+    }
 
-            .product-name {
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin-bottom: 2rem;
-            }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 200px;
+      padding-bottom: 15px;
+    }
 
-            .form-group {
-                margin-bottom: 1rem;
-            }
+    .form-heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #212427;
+      line-height: 1.222;
+    }
 
-            .form-group label {
-                font-weight: bold;
-            }
+    .form-container {
+      max-width: 35rem;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+    }
 
-            .form-group input[type="email"],
-            .form-group input[type="text"] {
-                width: 100%;
-                padding: 0.5rem;
-                border-radius: 4px;
-                border: 1px solid #d2d2d2;
-            }
+    .form-group {
+      margin-bottom: 1rem;
+    }
 
-            .radio-group {
-                display: flex;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
+    .form-group label {
+      color: #212427;
+      font-weight: 500;
+    }
 
-            .radio-group label {
-                margin-right: 1rem;
-            }
+    .form-group input[type="email"]:placeholder-shown,
+    .form-group input[type="text"]:placeholder-shown {
+      border-bottom-color: #73BCF7; /* Change color when input is empty */
+      color: #8A8D90; /* Change text color when input is empty */
+    }
+    
+    .form-group input[type="email"],
+    .form-group input[type="text"] {
+      width: 100%;
+      border: 0;
+      z-index: 1;
+      background-color: transparent;
+      border-bottom: 2px solid #eee;
+      border-bottom-color: #0066cc;
+      font: inherit;
+      font-size: 1.125rem;
+      padding: .25rem 0;
+      transition: border-color 0.3s ease;
+    }
 
-            .submit-button {
-                background-color: #cc0000;
-                color: #fff;
-                padding: 0.5rem 1rem;
-                border: none;
-                border-radius: 4px;
-                font-weight: bold;
-                cursor: pointer;
-            }
+    .radio-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-top: 1rem; /* Added padding */
+    }
 
-            .submit-button:hover {
-                background-color: #a80000;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="logo">
-            <!-- Placeholder for your logo -->
-        </div>
-        <div class="product-name">
-            Jira Easy Task (JET)
-        </div>
+    .radio-group label {
+      margin-right: 1rem;
+    }
 
-        <div class="form-container">
-            <h1>Create JET Issue</h1>
+    .submit-button {
+      font: inherit;
+      font-size: 1.25rem;
+      padding: 1em;
+      width: 100%;
+      font-weight: 500;
+      background-color: #0066cc;
+      border-radius: 6px;
+      color: #FFF;
+      border: 0;
+    }
+    
+  </style>
+</head>
 
-            <form id="jiraForm">
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="summary">Summary:</label>
-                    <input type="text" id="summary" name="summary" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="type">Task type:</label>
-                    <div class="radio-group">
-                        <input type="radio" id="maintenance" name="type" value="maintenance">
-                        <label for="maintenance">Maintenance</label>
-			<input type="radio" id="general" name="type" value="general">
-                        <label for="general">General</label>
-			<input type="radio" id="merge-request" name="type" value="merge-request" checked>
-                        <label for="merge-request">Merge request</label>
-                        <input type="radio" id="toil" name="type" value="toil">
-                        <label for="toil">Toil</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-button">Create Jira</button>
-	</form>
+<body>
+	<div class="form-container">
+  		<img src= "/JET_Logo.png"/>
+ 
+ 		<form id="jiraForm">
 		
-	<script>
-		const form = document.getElementById('jiraForm');
-		form.addEventListener('submit', createJiraTask);
+		<div class="form-group">
+		  <label for="email">Email Address:</label>
+		  <input type="email" id="email" name="email" placeholder="Enter your email address">
+		</div>
 
-		async function createJiraTask(event) {
-			event.preventDefault();
-			const email = document.getElementById('email').value;
-			const type = document.querySelector('input[name="type"]:checked').value;
-			const summary = document.getElementById('summary').value;
-			const url = 'https://issues.redhat.com/rest/api/2/issue';
-			const payload = JSON.stringify({
-				"fields": {
-					"project": {
-						"key": "RHCLOUD"
-					},
-					"issuetype": {
-						"name": "Task"
-					},
-					"priority": {
-						"name": "Normal"
-					},
-					"summary": `${type} | ${summary}`,
-					"labels": ["platform-devprod", "merge-request", type.toLowerCase()],
-					"assignee": {
-						"emailAddress": email
-					}
-				}
-			});
+		<div class="form-group">
+		  <label for="summary">Summary:</label>
+		  <input type="text" id="summary" name="summary" required placeholder="Enter the summary">
+		</div>
 
-			try {
-				const response = await fetch(url, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': 'Bearer API-KEY'
-					},
-					body: payload
-				});
+		<div class="form-group">
+		  <label for="type">Task type:</label>
+		  <div class="radio-group">
+			<input type="radio" id="general" name="type" value="general" checked>
+			<label for="general">General</label>
 
-				if (response.ok) {
-					const data = await response.json();
-					const issueId = data.key;
-					const issueLink = data.self;
-					alert(`Jira task created successfully!\nIssue ID: ${issueId}\nIssue Link: ${issueLink}`);
-				} else {
-					const error = await response.json();
-					alert(`Jira task creation failed: ${error.errors.assignee}`);
-				}
-			} catch (error) {
-				alert(`Jira task creation failed: ${error}`);
-			}
-		}
-	</script>
-            
-	</body>
+			<input type="radio" id="maintenance" name="type" value="maintenance">
+			<label for="maintenance">Maintenance</label>
+
+			<input type="radio" id="merge-request" name="type" value="merge-request">
+			<label for="merge-request">Merge request</label>
+
+			<input type="radio" id="toil" name="type" value="toil">
+			<label for="toil">Toil</label>
+		  </div>
+		</div>
+
+		<button type="submit" class="submit-button">Submit</button>
+	  </form>
+
+  <script>
+    const form = document.getElementById('jiraForm');
+    form.addEventListener('submit', createJiraTask);
+
+    async function createJiraTask(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const type = document.querySelector('input[name="type"]:checked').value;
+      const summary = document.getElementById('summary').value;
+      const url = 'https://issues.redhat.com/rest/api/2/issue';
+      const payload = JSON.stringify({
+        "fields": {
+          "project": {
+            "key": "RHCLOUD"
+          },
+          "issuetype": {
+            "name": "Task"
+          },
+          "priority": {
+            "name": "Normal"
+          },
+          "summary": `${type} | ${summary}`,
+          "labels": ["platform-devprod", "merge-request", type.toLowerCase()],
+          "assignee": {
+            "emailAddress": email
+          }
+        }
+      });
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer API-KEY'
+          },
+          body: payload
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const issueId = data.key;
+          const issueLink = data.self;
+          alert(`Jira task created successfully!\nIssue ID: ${issueId}\nIssue Link: ${issueLink}`);
+        } else {
+          const error = await response.json();
+          alert(`Jira task creation failed: ${error.errors.assignee}`);
+        }
+      } catch (error) {
+        alert(`Jira task creation failed: ${error}`);
+      }
+    }
+  </script>
+
+</body>
 </html>
