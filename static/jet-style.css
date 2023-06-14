@@ -38,14 +38,14 @@ img {
     font-weight: 500;
 }
 
-.form-group input[type="email"]:placeholder-shown,
+.form-group input[type="text"]:placeholder-shown,
 .form-group input[type="text"]:placeholder-shown {
 	border-bottom-color: #73BCF7; /* Change color when input is empty */
 	color: #8A8D90; /* Change text color when input is empty */
 	font-size: 0.875rem;
 }
     
-.form-group input[type="email"],
+.form-group input[type="text"],
 .form-group input[type="text"] {
 	width: 100%;
     border: 0;

@@ -1,12 +1,12 @@
 const form = document.getElementById('jiraForm');
-form.addEventListener('submit', createJiraTask);
+addEventListener('submit', createJiraTask);
 
 async function createJiraTask(event) {
   event.preventDefault();
   const email = document.getElementById('email').value;
   const type = document.querySelector('input[name="type"]:checked').value;
   const summary = document.getElementById('summary').value;
-  const url = 'https://issues.redhat.com/rest/api/2/issue';
+  const url = 'http://localhost:10000';
   const payload = JSON.stringify({
     "fields": {
       "project": {
@@ -21,7 +21,7 @@ async function createJiraTask(event) {
       "summary": `${type} | ${summary}`,
       "labels": ["platform-devprod", "merge-request", type.toLowerCase()],
       "assignee": {
-        "emailAddress": email
+        "name": email
       }
     }
   });
@@ -32,7 +32,7 @@ async function createJiraTask(event) {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer API-KEY'
+	'mode': 'no-cors',
       },
       body: payload
     });
