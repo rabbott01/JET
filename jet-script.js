@@ -31,6 +31,7 @@ async function createJiraTask(event) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'Authorization': 'Bearer API-KEY'
       },
       body: payload
