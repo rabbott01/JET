@@ -19,10 +19,13 @@ async function createJiraTask(event) {
         "name": "Normal"
       },
       "summary": `${type} | ${summary}`,
-      "labels": ["platform-devprod", "merge-request", type.toLowerCase()],
+      "labels": ["platform-devprod", type.toLowerCase()],
       "assignee": {
         "name": username
       }
+      "security": {
+      "name": "Red Hat Employee"
+    },
     }
   });
 
