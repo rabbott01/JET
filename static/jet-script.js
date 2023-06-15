@@ -3,7 +3,7 @@ addEventListener('submit', createJiraTask);
 
 async function createJiraTask(event) {
   event.preventDefault();
-  const email = document.getElementById('email').value;
+  const username = document.getElementById('username').value;
   const type = document.querySelector('input[name="type"]:checked').value;
   const summary = document.getElementById('summary').value;
   const url = 'http://localhost:10000';
@@ -21,7 +21,7 @@ async function createJiraTask(event) {
       "summary": `${type} | ${summary}`,
       "labels": ["platform-devprod", "merge-request", type.toLowerCase()],
       "assignee": {
-        "name": email
+        "name": username
       }
     }
   });
