@@ -38,10 +38,26 @@ async function createJiraTask(event) {
     });
 
     if (response.ok) {
-      const data = await response.json();
-      const issueId = data.key;
-      const issueLink = data.self;
-      alert(`Jira task created successfully!\nIssue ID: ${issueId}\nIssue Link: ${issueLink}`);
+    const data = await response.json();
+    const issueId = data.key;
+    const issueLink = data.self;
+    const modal = document.getElementById('modal');
+	const modalMessage = document.getElementById('modal-message');
+	modalMessage.value = `Jira task created successfully!\nIssue ID: ${issueId}\nIssue Link: ${issueLink}`;
+	modal.style.display = 'block';
+
+	const closeButton = document.getElementsByClassName('close')[0];
+	closeButton.addEventListener('click', closeModal);
+
+	function closeModal() {
+ 	modal.style.display = 'none';
+	}
+
+	modal.addEventListener('click', function (event) {
+  		if (event.target === modal) {
+    	modal.style.display = 'none';
+  	}
+});
     } else {
       const error = await response.json();
       alert(`Jira task creation failed: ${error.errors.assignee}`);
