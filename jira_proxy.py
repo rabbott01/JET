@@ -48,4 +48,4 @@ def open_jira(jira_info_json):
 
 
 if __name__ == '__main__':
-    APP.run(APP.run(host='0.0.0.0', port=10000))
+    APP.run(APP.run(host='0.0.0.0', port=80))

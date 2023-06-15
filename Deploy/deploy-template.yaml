@@ -15,12 +15,6 @@ objects:
       matchLabels:
         app: jet-form
     strategy:
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
       type: Recreate
     template:
       metadata:
@@ -29,16 +23,11 @@ objects:
       spec:
         containers:
         - env:
-          - name: JIRA_USER
+          - name: JIRA_TOKEN
             valueFrom:
               secretKeyRef:
-                key: username
-                name: jira-creds
-          - name: JIRA_PW
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: jira-creds
+                key: token
+                name: jira-token
           image: ${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: Always
           name: jet-form
