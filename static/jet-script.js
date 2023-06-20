@@ -6,7 +6,7 @@ async function createJiraTask(event) {
   const username = document.getElementById('username').value;
   const type = document.querySelector('input[name="type"]:checked').value;
   const summary = document.getElementById('summary').value;
-  const url = 'http://localhost:10000';
+  const url = 'http://jet-route-ephemeral-hzzoep.apps.c-rh-c-eph.8p0c.p1.openshiftapps.com';
   const payload = JSON.stringify({
     "fields": {
       "project": {
